@@ -32,3 +32,15 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+function increase(btn) {
+    let input = btn.previousElementSibling;
+    input.value = parseInt(input.value) + 1;
+}
+
+function decrease(btn) {
+    let input = btn.nextElementSibling;
+    if (parseInt(input.value) > 1) {
+        input.value = parseInt(input.value) - 1;
+    }
+}
