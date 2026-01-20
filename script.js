@@ -44,3 +44,88 @@ function decrease(btn) {
         input.value = parseInt(input.value) - 1;
     }
 }
+
+
+
+// cart
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+function updateCartCount() {
+    let count = 0;
+    cart.forEach(item => count += item.qty);
+
+    const el = document.getElementById("cartCount");
+    if (el) el.innerText = count;
+}
+
+function saveCart() {
+    localStorage.setItem("cart", JSON.stringify(cart));
+    updateCartCount();
+}
+
+function addToCart(name, price) {
+    let item = cart.find(p => p.name === name);
+
+    if (item) {
+        item.qty += 1;
+    } else {
+        cart.push({ name, price, qty: 1 });
+    }
+
+    saveCart();
+}
+
+function displayCart() {
+    const table = document.getElementById("cartItems");
+    if (!table) return;
+
+    table.innerHTML = "";
+    let grandTotal = 0;
+
+    cart.forEach((item, index) => {
+        let total = item.price * item.qty;
+        grandTotal += total;
+
+        table.innerHTML += `
+            <tr>
+                <td>${item.name}</td>
+                <td>$${item.price}</td>
+                <td>
+                    <button class="cart-btn" onclick="changeQty(${index}, -1)">−</button>
+                    ${item.qty}
+                    <button class="cart-btn" onclick="changeQty(${index}, 1)">+</button>
+                </td>
+                <td>$${total}</td>
+                <td>
+                    <button class="cart-btn remove" onclick="removeItem(${index})">X</button>
+                </td>
+            </tr>
+        `;
+    });
+
+    document.getElementById("grandTotal").innerText = grandTotal;
+}
+
+function changeQty(index, change) {
+    cart[index].qty += change;
+
+    if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+    }
+
+    saveCart();
+    displayCart();
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+    displayCart();
+}
+
+function openCart() {
+    window.location.href = "cart.html";
+}
+
+updateCartCount();
+displayCart();

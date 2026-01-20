@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shady Moto - Your Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo"> <div class="logo">
+                 <img src="logo1.png" height="50px" >
+                <span>Shady Moto</span>
+            </div></a>
+            <ul class="nav-links">
+                <li><a href="index.html" ><i class="fas fa-home"></i>Home</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i>About Us</a></li>
+                <li><a href="contact.html"><i class="fas fa-envelope"></i>Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+    </nav>
+    <section class="hero1">
+        <div class="hero1-content">
+            <h1 style="text-align:center; color:black;">Your Cart</h1>
+        </div>
+    </section>
+
+
+<section class="cart-section">
+<div class="cart-container">
+
+    <table class="cart-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Price</th>
+                <th>Qty</th>
+                <th>Total</th>
+                <th>Remove</th>
+            </tr>
+        </thead>
+        <tbody id="cartItems"></tbody>
+    </table>
+
+    
+
+    <div style="text-align:center; margin-top:20px;">
+        <button class="checkout-btn">Proceed to Checkout</button>
+    </div>
+<h2 class="cart-total">
+        Total: <span id="grandTotal">0</span> Rs.
+    </h2>
+</div>
+</section>
+<footer>
+    <p>© 2025 Shady Moto. All rights reserved.</p><br>
+        <p>Follow us</p>
+    <div class="social-links">
+        <a href="https://facebook.com/ target="_blank">Facebook</a>
+        <a href="https://instagram.com/ target="_blank">Instagram</a>
+        <a href="https://tiktok.com/@ target="_blank">TikTok</a>
+    </div>
+</footer>
+<script src="js/cart.js"></script>
+</body>
+</html>
