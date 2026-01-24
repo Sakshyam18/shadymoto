@@ -445,7 +445,7 @@ footer .social-links a:hover {
 .cart-section {
     padding: 4rem 2rem;
     max-width: 1200px;
-    margin: 0 auto;
+    margin:  auto;
 }
 .cart-container {
     max-width: 900px;
@@ -458,9 +458,10 @@ footer .social-links a:hover {
 .cart-table {
     width: 100%;
     border-collapse: collapse;
+    margin: auto;
 }
 
-.cart-table th,
+/* .cart-table th, */
 .cart-table td {
     border: 1px solid black;
     padding: 12px;
@@ -468,12 +469,15 @@ footer .social-links a:hover {
 }
 
 .cart-table th {
-    background-color: black;
+    border: 1px solid black;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
     color: white;
+    padding: 12px;
+    text-align: center;
 }
 
-.qty-input {
-    width: 60px;
+.cart-table input {
+     max-width: 50px;
     padding: 5px;
     text-align: center;
 }
@@ -495,6 +499,8 @@ footer .social-links a:hover {
 .checkout-container {
     text-align: center;
     margin-top: 20px;
+    /* max-width: 500px; */
+    /* margin-left: 200px; */
 }
 
 .checkout-btn {
@@ -538,6 +544,7 @@ footer .social-links a:hover {
     max-width: 1100px;
     margin: auto;
     padding: 40px 20px;
+    
 }
 
 .checkout-wrapper {
@@ -557,6 +564,7 @@ footer .social-links a:hover {
     width: 100%;
     border-collapse: collapse;
     margin-top: 15px;
+   
 }
 
 .checkout-table th,

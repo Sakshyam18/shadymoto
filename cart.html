@@ -59,56 +59,7 @@
         Total: <span id="grandTotal">0</span> Rs.
     </h2>
 </div>
-
-<!-- <script>
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
-const cartItems = document.getElementById("cartItems");
-const grandTotal = document.getElementById("grandTotal");
-
-function renderCart() {
-    cartItems.innerHTML = "";
-    let total = 0;
-
-    cart.forEach((item, index) => {
-        const itemTotal = item.price * item.qty;
-        total += itemTotal;
-
-        cartItems.innerHTML += `
-            <tr>
-                <td>${item.name}</td>
-                <td>${item.price}</td>
-                <td>
-                    <input type="number" min="1" value="${item.qty}"
-                        class="qty-input"
-                        onchange="updateQty(${index}, this.value)">
-                </td>
-                <td>${itemTotal}</td>
-                <td>
-                    <button class="remove-btn" onclick="removeItem(${index})">X</button>
-                </td>
-            </tr>
-        `;
-    });
-
-    grandTotal.innerText = total;
-    localStorage.setItem("cart", JSON.stringify(cart));
-}
-
-function updateQty(index, qty) {
-    cart[index].qty = parseInt(qty);
-    renderCart();
-}
-
-function removeItem(index) {
-    cart.splice(index, 1);
-    renderCart();
-}
-
-renderCart();
-</script> -->
 </section>
-
-
 <footer>
     <p>© 2025 Shady Moto. All rights reserved.</p><br>
         <p>Follow us</p>
