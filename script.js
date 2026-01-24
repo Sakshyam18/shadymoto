@@ -62,14 +62,31 @@ function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
     updateCartCount();
 }
+function addProductToCart(button, name, price) {
+    // find the product card
+    const card = button.closest(".product-card");
 
-function addToCart(name, price) {
+    // find the quantity input inside this card
+    const qtyInput = card.querySelector(".qty-box input");
+
+    // get quantity value
+    const qty = parseInt(qtyInput.value);
+
+    // safety check
+    if (isNaN(qty) || qty < 1) return;
+
+    // add to cart
+    addToCart(name, price, qty);
+
+    
+}
+function addToCart(name, price, qty) {
     let item = cart.find(p => p.name === name);
 
     if (item) {
-        item.qty += 1;
+        item.qty += qty;
     } else {
-        cart.push({ name, price, qty: 1 });
+        cart.push({ name, price, qty });
     }
 
     saveCart();
@@ -180,3 +197,5 @@ function removeItem(index) {
 }
 
 renderCart();
+
+

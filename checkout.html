@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Shady Moto</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <div class="logo">
+                <img src="logo1.png" height="50">
+                <span>Shady Moto</span>
+            </div>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+            <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+        </ul>
+
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero1">
+    <div class="hero1-content">
+        <h1 style="text-align:center; color:black;">Checkout</h1>
+    </div>
+</section>
+
+<!-- CHECKOUT -->
+<section class="page-container">
+    <div class="checkout-wrapper">
+
+        <!-- ORDER SUMMARY -->
+        <div class="checkout-box">
+            <h3>Order Summary</h3>
+
+            <table class="checkout-table">
+                <thead>
+                    <tr>
+                        <th>Product</th>
+                        <th>Qty</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody id="checkoutItems"></tbody>
+            </table>
+
+            <div class="checkout-total" id="grandTotal"></div>
+        </div>
+
+        <!-- CUSTOMER DETAILS -->
+        <div class="checkout-box">
+            <h3>Customer Details</h3>
+
+            <form onsubmit="placeOrder(event)">
+
+                <input
+                    type="text"
+                    placeholder="Full Name"
+                    required
+                    pattern="[A-Za-z ]+"
+                    title="Name should contain only alphabets"
+                >
+
+                <input
+                    type="tel"
+                    placeholder="Phone Number"
+                    required
+                    pattern="(98|97)[0-9]{8}"
+                    title="Enter a valid number"
+                >
+
+                <input
+                    type="email"
+                    placeholder="Email"
+                    required
+                    title="Enter a valid email address"
+                >
+
+                <input
+                    type="text"
+                    placeholder="Delivery Address"
+                    required
+                    title="Enter your address to be delivered"
+                >
+                
+
+                <button type="submit" class="btn checkout-btn">
+                    Place Order
+                </button>
+
+            </form>
+        </div>
+
+    </div>
+</section>
+<!-- SUCCESS POPUP -->
+<div class="popup-overlay" id="popup">
+    <div class="popup-box">
+        <i class="fas fa-check-circle"></i>
+        <h2>Order Placed!</h2>
+        <p>Your order has been successfully placed. Thank you for shopping with us.</p>
+        <button onclick="closePopup()">Continue Shopping</button>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <p>© 2025 Shady Moto. All rights reserved.</p><br>
+        <p>Follow us</p>
+    <div class="social-links">
+        <a href="https://facebook.com/shadymoto" target="_blank">Facebook</a>
+        <a href="https://instagram.com/shadymoto" target="_blank">Instagram</a>
+        <a href="https://tiktok.com/@shadymoto" target="_blank">TikTok</a>
+    </div>
+</footer>
+
+<!-- SCRIPT -->
+<script>
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const tableBody = document.getElementById("checkoutItems");
+    const grandTotalEl = document.getElementById("grandTotal");
+
+    let grandTotal = 0;
+
+    cart.forEach(item => {
+        const total = item.price * item.qty;
+        grandTotal += total;
+
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${item.name}</td>
+            <td>${item.qty}</td>
+            <td>Rs. ${item.price}</td>
+            <td>Rs. ${total}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+
+    grandTotalEl.innerText = "Grand Total: Rs. " + grandTotal;
+
+    
+function placeOrder(event) {
+    event.preventDefault();
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+
+    // show popup
+    document.getElementById("popup").style.display = "flex";
+
+    // clear cart
+    localStorage.removeItem("cart");
+}
+
+function closePopup() {
+    window.location.href = "index.html";
+}
+
+
+</script>
+
+</body>
+</html>
